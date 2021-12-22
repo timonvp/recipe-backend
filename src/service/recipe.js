@@ -30,7 +30,7 @@ const updateById = (id, {name, preparation, duration, people, ingredients}) => {
 }
 
 const deleteById = (id) => {
-    RECIPES = RECIPES.filter(v => v.id !== id);
+    RECIPES = RECIPES.filter(v => v.id != id);
 }
 
 module.exports = {
