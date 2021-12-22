@@ -1,4 +1,5 @@
 const uuid = require('uuid');
+const { transport } = require('winston');
 let { RECIPES } = require('../data/mock_data');
 
 const getAll = () => {
@@ -9,7 +10,7 @@ const getAll = () => {
 }
 
 const getById = (id) => {
-    return RECIPES.filter(v => v.id == id);
+    return RECIPES.filter(v => v.id == id)[0];
 }
 
 const create = ({name, preparation, duration, people, ingredients}) => {
@@ -26,7 +27,15 @@ const create = ({name, preparation, duration, people, ingredients}) => {
 }
 
 const updateById = (id, {name, preparation, duration, people, ingredients}) => {
-    throw new Error('not implemented yet');
+    RECIPES = RECIPES.map(v => {
+        return v.id == id ? {...v,
+            name,
+            preparation,
+            duration,
+            people,
+            ingredients} : v;
+    })
+    return getById(id);
 }
 
 const deleteById = (id) => {

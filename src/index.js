@@ -38,14 +38,22 @@ router.get('/api/recipes', async (ctx) => {
 });
 
 router.post('/api/recipes', async (ctx) => {
-    const newRecipe = recipeService.create({
-        ...ctx.request.body
-    });
+    const newRecipe = recipeService.create({...ctx.request.body});
     ctx.body = newRecipe;
 });
 
 router.get('/api/recipes/:id', async (ctx) => {
     ctx.body = recipeService.getById(ctx.params.id);
+});
+
+router.delete('/api/recipes/:id', async (ctx) => {
+    recipeService.deleteById(ctx.params.id);
+    ctx.status = 204;
+});
+
+router.put('/api/recipes/:id', async (ctx) => {
+    recipeService.updateById(ctx.params.id, {...ctx.request.body});
+    ctx.status = 204;
 });
 
 app
