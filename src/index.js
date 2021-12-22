@@ -1,8 +1,9 @@
 const config = require('config');
 const Koa = require('koa');
-const {
-    getLogger
-} = require('./core/logging');
+const Router = require('@koa/router');
+const bodyParser = require('koa-bodyparser');
+const { getLogger } = require('./core/logging');
+const recipeService = require('./service/recipe');
 
 const HOST = config.get('host');
 const PORT = config.get('port');
@@ -12,11 +13,17 @@ const LOG_DISABLED = config.get('log.disabled');
 
 const app = new Koa();
 const logger = getLogger();
+const router = new Router();
 
-app.use(async (ctx, next) => {
-    ctx.body = 'Hello world!';
-    await next();
-})
+app.use(bodyParser());
+
+router.get('/api/recipes', async (ctx) => {
+    ctx.body = recipeService.getAll();
+});
+
+app
+    .use(router.routes())
+    .use(router.allowedMethods());
 
 app.listen(PORT);
 

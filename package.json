@@ -7,9 +7,11 @@
     "start": "npx env-cmd nodemon src/index.js"
   },
   "dependencies": {
+    "@koa/router": "^10.1.1",
     "config": "^3.3.6",
     "env-cmd": "^10.1.0",
     "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
