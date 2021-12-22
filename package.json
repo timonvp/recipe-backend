@@ -12,6 +12,7 @@
     "env-cmd": "^10.1.0",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
+    "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {

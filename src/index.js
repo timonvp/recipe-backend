@@ -21,6 +21,17 @@ router.get('/api/recipes', async (ctx) => {
     ctx.body = recipeService.getAll();
 });
 
+router.post('/api/recipes', async (ctx) => {
+    const newRecipe = recipeService.create({
+        ...ctx.request.body
+    });
+    ctx.body = newRecipe;
+});
+
+router.get('/api/recipes/:id', async (ctx) => {
+    ctx.body = recipeService.getById(ctx.params.id);
+});
+
 app
     .use(router.routes())
     .use(router.allowedMethods());
