@@ -43,6 +43,17 @@ async function initializeData() {
     return knexInstance;
 }
 
+function getKnex() {
+    if (!knexInstance) throw new Error('Initialize the data layer before getting the Knex instance');
+    return knexInstance;
+  }
+
+  const tables = {
+    recipe: 'recipe'
+  };
+
 module.exports = {
-    initializeData
+    initializeData,
+    getKnex,
+    tables
 }

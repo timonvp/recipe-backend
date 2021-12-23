@@ -3,9 +3,9 @@ const Koa = require('koa');
 const Router = require('@koa/router');
 const bodyParser = require('koa-bodyparser');
 const koaCors = require('@koa/cors');
-const { getLogger } = require('./core/logging');
-const recipeService = require('./service/recipe');
-const { initializeData } = require('./data/index');
+const { getLogger } = require('../core/logging');
+const recipeService = require('../service/recipe');
+const { initializeData } = require('../data/index');
 
 const uuid = require('uuid');
 
