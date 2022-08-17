@@ -2,9 +2,9 @@ const config = require('config');
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const koaCors = require('@koa/cors');
-const { getLogger } = require('../core/logging');
-const { initializeData } = require('../data/index');
-const recipe = require('./recipe');
+const { getLogger } = require('./core/logging');
+const { initializeData } = require('./data/index');
+const recipe = require('./rest/recipe');
 
 const HOST = config.get('host');
 const PORT = config.get('port');
