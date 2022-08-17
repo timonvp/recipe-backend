@@ -2,6 +2,7 @@ const uuid = require('uuid');
 const { transport } = require('winston');
 const userRepository = require('../repository/user');
 const { hashPassword, verifyPassword } = require('../core/password');
+const { generateToken } = require('../core/token')
 
 
 const getById = async (id) => {

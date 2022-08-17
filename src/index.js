@@ -5,6 +5,8 @@ const koaCors = require('@koa/cors');
 const { getLogger } = require('./core/logging');
 const { initializeData } = require('./data/index');
 const recipe = require('./rest/recipe');
+const user = require('./rest/user');
+const login = require('./rest/login');
 
 const HOST = config.get('host');
 const PORT = config.get('port');
@@ -36,6 +38,14 @@ async function main() {
     app
         .use(recipe.router.routes())
         .use(recipe.router.allowedMethods());
+    
+    app
+        .use(user.router.routes())
+        .use(user.router.allowedMethods());
+    
+    app
+        .use(login.router.routes())
+        .use(login.router.allowedMethods());
     
     app.listen(PORT);
     

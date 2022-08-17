@@ -1,3 +1,5 @@
+const config = require('config');
+
 const jwt = require('jsonwebtoken');
 const jwtSecret = config.get('jwtSecret');
 
@@ -18,4 +20,8 @@ function generateToken(userId) {
             }
         })
     })
+}
+
+module.exports = {
+    generateToken
 }

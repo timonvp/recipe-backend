@@ -49,7 +49,8 @@ function getKnex() {
   }
 
   const tables = {
-    recipe: 'recipe'
+    recipe: 'recipe',
+    user: 'user'
   };
 
 module.exports = {
