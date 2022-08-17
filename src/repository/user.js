@@ -16,6 +16,12 @@ const findById = (id) => {
         .first();
 };
 
+const findByUsername = (username) => {
+    return getKnex()(tables.user)
+        .where('username', username)
+        .first();
+};
+
 const create = async ({
     username,
     password
@@ -40,5 +46,6 @@ const create = async ({
 
 module.exports = {
     findById,
+    findByUsername,
     create
 };

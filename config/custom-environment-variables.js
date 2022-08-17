@@ -3,5 +3,6 @@ module.exports = {
     database : {
         username: 'DATABASE_USERNAME',
         password: 'DATABASE_PASSWORD'
-    }
+    },
+    jwtSecret: 'JWT_SECRET'
 }

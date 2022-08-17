@@ -1,7 +1,7 @@
 const uuid = require('uuid');
 const { transport } = require('winston');
-const userRepository = require('../repository/recipe');
-const { hashPassword } = require('../core/password')
+const userRepository = require('../repository/user');
+const { hashPassword, verifyPassword } = require('../core/password');
 
 
 const getById = async (id) => {
@@ -12,7 +12,29 @@ const create = async ({username, password}) => {
     return await userRepository.create({username, password: hashPassword(password)});
 }
 
+const loginUser = async ({username, password}) => {
+    const user = await userRepository.findByUsername(username)
+    if (!user) {
+        throw new Error('Gebruikersnaam en wachtwoord komen niet overeen.')
+    }
+    const isValid = await verifyPassword(password, user.password)
+    if (!isValid) {
+        throw new Error('Gebruikersnaam en wachtwoord komen niet overeen.')
+    }
+    const token = await generateToken(user.id)
+    return {
+        data: {
+            token,
+            user: {
+                id: user.id,
+                username: user.username
+            }
+        }
+    }
+}
+
 module.exports = {
     getById,
-    create
+    create,
+    loginUser
 }
