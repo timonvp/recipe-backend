@@ -10,7 +10,7 @@ const getById = async (id) => {
 }
 
 const create = async ({username, password}) => {
-    return await userRepository.create({username, password: hashPassword(password)});
+    return await userRepository.create({username, password: await hashPassword(password)});
 }
 
 const loginUser = async ({username, password}) => {

@@ -9,12 +9,11 @@ router.get('/api/recipes', requireAuth, async (ctx) => {
 });
 
 router.post('/api/recipes', requireAuth, async (ctx) => {
-    const newRecipe = await recipeService.create({...ctx.request.body});
-    ctx.body = newRecipe;
+    ctx.body = {data : await recipeService.create({...ctx.request.body})};
 });
 
 router.get('/api/recipes/:id', requireAuth, async (ctx) => {
-    ctx.body = await recipeService.getById(ctx.params.id);
+    ctx.body = {data : await recipeService.getById(ctx.params.id)};
 });
 
 router.delete('/api/recipes/:id', requireAuth, async (ctx) => {

@@ -4,13 +4,14 @@ const { requireAuth } = require('../core/auth');
 
 const router = new Router();
 
-router.post('/api/users', requireAuth, async (ctx) => {
-    const newUser = await userService.create({...ctx.request.body});
-    ctx.body = newUser;
+router.post('/api/users', async (ctx) => {
+    await userService.create({...ctx.request.body});
+    ctx.body = await userService.loginUser({...ctx.request.body});
+    
 });
 
 router.get('/api/users/:id', requireAuth, async (ctx) => {
-    ctx.body = await userService.getById(ctx.params.id);
+    ctx.body = { data : await userService.getById(ctx.params.id) };
 });
 
 
