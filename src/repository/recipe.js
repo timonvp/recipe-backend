@@ -23,6 +23,7 @@ const findCount = async () => {
 };
 
 const create = async ({
+  userid,
   name,
   preparation,
   duration,
@@ -34,6 +35,7 @@ const create = async ({
     await getKnex()(tables.recipe)
       .insert({
         id,
+        userid,
         name,
         preparation,
         duration,
@@ -49,6 +51,7 @@ const create = async ({
 };
 
 const updateById = async (id, {
+    userid,
     name,
     preparation,
     duration,
@@ -59,6 +62,7 @@ const updateById = async (id, {
     await getKnex()(tables.recipe)
       .update({
         id,
+        userid,
         name,
         preparation,
         duration,

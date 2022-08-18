@@ -13,11 +13,11 @@ const getById = async (id) => {
 }
 
 const create = async ({name, preparation, duration, people, ingredients}) => {
-    return await recipeRepository.create({name, preparation, duration, people, ingredients});
+    return await recipeRepository.create({userid, name, preparation, duration, people, ingredients});
 }
 
 const updateById = async (id, {name, preparation, duration, people, ingredients}) => {
-    return await recipeRepository.updateById(id, {name, preparation, duration, people, ingredients});
+    return await recipeRepository.updateById(id, {userid, name, preparation, duration, people, ingredients});
 }
 
 const deleteById = async (id) => {
