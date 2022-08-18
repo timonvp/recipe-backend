@@ -10,6 +10,20 @@ const findAll = () => {
     .orderBy('name', 'ASC');
 };
 
+const findAllOwn = (userid) => {
+  return getKnex()(tables.recipe)
+    .select()
+    .where('userid', userid)
+    .orderBy('name', 'ASC');
+};
+
+const findAllOther = (userid) => {
+  return getKnex()(tables.recipe)
+    .select()
+    .whereNot('userid', userid)
+    .orderBy('name', 'ASC');
+};
+
 const findById = (id) => {
   return getKnex()(tables.recipe)
     .where('id', id)
@@ -98,4 +112,6 @@ module.exports = {
   create,
   updateById,
   deleteById,
+  findAllOwn,
+  findAllOther
 };

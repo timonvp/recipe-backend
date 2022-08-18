@@ -8,6 +8,14 @@ router.get('/api/recipes', requireAuth, async (ctx) => {
     ctx.body = await recipeService.getAll();
 });
 
+router.get('/api/recipes/own', requireAuth, async (ctx) => {
+    ctx.body = await recipeService.getAllOwn(ctx.state.user);
+});
+
+router.get('/api/recipes/other', requireAuth, async (ctx) => {
+    ctx.body = await recipeService.getAllOther(ctx.state.user);
+});
+
 router.post('/api/recipes', requireAuth, async (ctx) => {
     ctx.body = {data : await recipeService.create({...ctx.request.body})};
 });

@@ -24,10 +24,24 @@ const deleteById = async (id) => {
     await recipeRepository.deleteById(id);
 }
 
+const getAllOwn = async (id) => {
+    return ({
+        data: await recipeRepository.findAllOwn(id)
+    });
+}
+
+const getAllOther = async (id) => {
+    return ({
+        data: await recipeRepository.findAllOther(id)
+    });
+}
+
 module.exports = {
     getAll,
     getById,
     create,
     updateById,
-    deleteById
+    deleteById,
+    getAllOwn,
+    getAllOther
 }
