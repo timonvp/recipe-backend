@@ -22,6 +22,22 @@ function generateToken(userId) {
     })
 }
 
+function verifyToken(token) {
+    const verifyOptions = {
+        subject: 'auth'
+    };
+
+    return new Promise((resolve, reject) => {
+        jwt.verify(token, jwtSecret, verifyOptions, (err, decodedToken) => {
+            if (err || !decodedToken) {
+                return reject(err);
+            }
+            return resolve(decodedToken);
+        });
+    });
+}
+
 module.exports = {
-    generateToken
+    generateToken,
+    verifyToken
 }
