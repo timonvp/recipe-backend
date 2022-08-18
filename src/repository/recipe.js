@@ -4,29 +4,45 @@ const { getLogger } = require('../core/logging');
 
 const logger = getLogger();
 
+const selectColums = [
+  `${tables.recipe}.id`,
+  'name',
+  'preparation',
+  'duration',
+  'people',
+  'ingredients',
+  `${tables.user}.id as userid`,
+  `${tables.user}.username as username`
+]
+
 const findAll = () => {
   return getKnex()(tables.recipe)
-    .select()
+    .select(selectColums)
+    .join(tables.user, `${tables.recipe}.userid`, '=', `${tables.user}.id`)
     .orderBy('name', 'ASC');
 };
 
 const findAllOwn = (userid) => {
   return getKnex()(tables.recipe)
-    .select()
+    .select(selectColums)
+    .join(tables.user, `${tables.recipe}.userid`, '=', `${tables.user}.id`)
     .where('userid', userid)
     .orderBy('name', 'ASC');
 };
 
 const findAllOther = (userid) => {
   return getKnex()(tables.recipe)
-    .select()
+    .select(selectColums)
+    .join(tables.user, `${tables.recipe}.userid`, '=', `${tables.user}.id`)
     .whereNot('userid', userid)
     .orderBy('name', 'ASC');
 };
 
 const findById = (id) => {
   return getKnex()(tables.recipe)
-    .where('id', id)
+    .select(selectColums)
+    .join(tables.user, `${tables.recipe}.userid`, '=', `${tables.user}.id`)
+    .where(`${tables.recipe}.id`, id)
     .first();
 };
 
