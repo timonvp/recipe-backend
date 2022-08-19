@@ -9,3 +9,4 @@ JWT_SECRET="9cc89071-83ca-46df-af31-17ebf361172a"
 ```
 Om de applicatie te starten, gebruik `yarn start`.
 De server draait nu op `http://localhost:9000`.
+
