@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "npx env-cmd nodemon src/index.js",
-    "test": "npx env-cmd jest"
+    "start": "nodemon src/index.js",
+    "test": "npx env-cmd jest",
+    "dev" : "npx env-cmd nodemon src/index.js"
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
