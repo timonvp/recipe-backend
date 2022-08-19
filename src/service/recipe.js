@@ -12,11 +12,11 @@ const getById = async (id) => {
     return await recipeRepository.findById(id);
 }
 
-const create = async ({name, preparation, duration, people, ingredients}) => {
+const create = async ({userid, name, preparation, duration, people, ingredients}) => {
     return await recipeRepository.create({userid, name, preparation, duration, people, ingredients});
 }
 
-const updateById = async (id, {name, preparation, duration, people, ingredients}) => {
+const updateById = async (id, {userid, name, preparation, duration, people, ingredients}) => {
     return await recipeRepository.updateById(id, {userid, name, preparation, duration, people, ingredients});
 }
 

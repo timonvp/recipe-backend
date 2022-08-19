@@ -17,7 +17,7 @@ router.get('/api/recipes/other', requireAuth, async (ctx) => {
 });
 
 router.post('/api/recipes', requireAuth, async (ctx) => {
-    ctx.body = {data : await recipeService.create({...ctx.request.body})};
+    ctx.body = {data : await recipeService.create({...ctx.request.body, userid : ctx.state.user})};
 });
 
 router.get('/api/recipes/:id', requireAuth, async (ctx) => {
