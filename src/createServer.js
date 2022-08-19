@@ -27,12 +27,7 @@ module.exports = async function createServer() {
 
     app.use(
         koaCors({
-            origin: (ctx) => {
-                if (CORS_ORIGINS.indexOf(ctx.request.header.origin) !== -1) {
-                    return ctx.request.header.origin;
-                }
-                return CORS_ORIGINS[0];
-            },
+            origin: "*",
             allowHeaders: ['Accept', 'Content-Type', 'Authorization'],
             maxAge: CORS_MAX_AGE
         })
