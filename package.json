@@ -19,6 +19,7 @@
     "mysql2": "^2.3.3",
     "node-emoji": "^1.11.0",
     "uuid": "^8.3.2",
+    "validatorjs": "^3.22.1",
     "winston": "^3.3.3"
   },
   "devDependencies": {

@@ -8,7 +8,9 @@ const recipe = require('./rest/recipe');
 const user = require('./rest/user');
 const login = require('./rest/login');
 const emoji = require('node-emoji');
+const ServiceError = require('./core/serviceError');
 
+const NODE_ENV = config.get('env');
 const HOST = config.get('host');
 const PORT = config.get('port');
 const CORS_ORIGINS = config.get('cors.origins');
@@ -61,6 +63,31 @@ async function main() {
       throw error;
     }
   });
+
+  app.use(async (ctx, next) => {
+    try {
+      await next();
+    } catch (error) {
+      const logger = getLogger();
+      logger.error('Error occured while handling a request', {
+        error: error.message,
+      });
+      if (error instanceof ServiceError) {
+          ctx.status = 400
+          ctx.body = {
+            code: error.code || 'BAD_REQUEST',
+            message: error.message,
+            details: error.details || {},
+            stack: NODE_ENV !== 'production' ? error.stack : undefined,
+          };
+      } else {
+          ctx.status = 500
+          ctx.body = {
+            code: 'INTERNAL_SERVER_ERROR',
+            message: 'Internal server error',
+          }
+      }
+    }})
     
     app
         .use(recipe.router.routes())
