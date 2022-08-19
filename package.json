@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index.js",
+    "start": "node src/index.js",
     "test": "npx env-cmd jest",
     "dev" : "npx env-cmd nodemon src/index.js"
   },
